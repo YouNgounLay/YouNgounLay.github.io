@@ -7,7 +7,20 @@
     </head>
     <body>
         <h1>POST Request Example - Sending to the correct address</h1>
-        <button onclick="sendPostRequest()">Send POST Request</button>
+        <form id="userDataForm">
+            <label for="username">Username:</label><br />
+            <input type="text" id="username" name="username" /><br />
+
+            <label for="socialUrl">Social URL:</label><br />
+            <input type="text" id="socialUrl" name="socialUrl" /><br />
+
+            <label for="note">Note:</label><br />
+            <textarea id="note" name="note"></textarea><br /><br />
+
+            <button type="button" onclick="sendPostRequest()">
+                Send POST Request
+            </button>
+        </form>
         <script src="scripts/user_data_handler.js"></script>
     </body>
 </html>

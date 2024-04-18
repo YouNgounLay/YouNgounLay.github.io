@@ -2,13 +2,19 @@ function sendPostRequest() {
   // Create an XMLHttpRequest object
   var xhr = new XMLHttpRequest();
 
+  var username = document.getElementById("username").value;
+  var socialUrl = document.getElementById("socialUrl").value;
+  var note = document.getElementById("note").value;
+  // Create an object with the user data
+  var userData = {
+    username: username || "test subject 10",
+    socialUrl: socialUrl || "test@subject.10",
+    note: note || "test subject 10 sending sth",
+  };
+
   // Define the request parameters
   var url = "http://127.0.0.1:8000/request_handler/follow_user/";
-  var data = JSON.stringify({
-    username: "test subject 01",
-    socialUrl: "test@subject.01",
-    note: "asdklfjasdlkfj",
-  }); // Replace 'key' and 'value' with your data
+  var data = JSON.stringify(userData); // Replace 'key' and 'value' with your data
   var method = "POST";
 
   // Configure the request
