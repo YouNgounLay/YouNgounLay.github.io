@@ -1,44 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POST Request Example</title>
-</head>
-<body>
-    <h1>POST Request Example - Sending to the correct address</h1>
-    <button onclick="sendPostRequest()">Send POST Request</button>
-
-    <script>
-        function sendPostRequest() {
-            // Create an XMLHttpRequest object
-            var xhr = new XMLHttpRequest();
-
-            // Define the request parameters
-            var url = 'http://127.0.0.1:8000/request_handler/follow_user/';
-            var data = JSON.stringify({ key: 'value' }); // Replace 'key' and 'value' with your data
-            var method = 'POST';
-
-            // Configure the request
-            xhr.open(method, url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-
-            // Handle the response
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        console.log('POST request successful');
-                        console.log('Response:', xhr.responseText);
-                    } else {
-                        console.error('Error:', xhr.statusText);
-                    }
-                }
-            };
-
-            // Send the request
-            xhr.send(data);
-        }
-    </script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>POST Request Example</title>
+    </head>
+    <body>
+        <h1>POST Request Example - Sending to the correct address</h1>
+        <button onclick="sendPostRequest()">Send POST Request</button>
+        <script src="scripts/user_data_handler.js"></script>
+    </body>
 </html>
-
