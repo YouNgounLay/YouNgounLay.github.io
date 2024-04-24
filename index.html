@@ -3,24 +3,38 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>POST Request Example</title>
+        <title>Follow Approval (Local Test)</title>
     </head>
     <body>
-        <h1>POST Request Example - Sending to the correct address</h1>
-        <form id="userDataForm">
-            <label for="username">Username:</label><br />
-            <input type="text" id="username" name="username" /><br />
+        <h1>Welcome to my Static Page</h1>
+        <script>
+            // Assuming the server endpoint is at http://localhost:8000/ (modify if different)
+            const endpoint = "http://localhost:8000/endpoint";
+            const replyEndpoint = "http://localhost:8000/reply";
 
-            <label for="socialUrl">Social URL:</label><br />
-            <input type="text" id="socialUrl" name="socialUrl" /><br />
+            fetch(endpoint, {
+                // Replace '/endpoint' with your actual endpoint
+                method: "POST",
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    const username = data.username;
+                    const approved = checkUser(username); // Function to check username (replace)
+                    const reply = approved ? "yes" : "no";
+                    return fetch(replyEndpoint, {
+                        // Replace '/reply' with your reply endpoint
+                        method: "POST",
+                        body: JSON.stringify({ response: reply }),
+                    });
+                })
+                .catch((error) => console.error(error));
 
-            <label for="note">Note:</label><br />
-            <textarea id="note" name="note"></textarea><br /><br />
-
-            <button type="button" onclick="sendPostRequest()">
-                Send POST Request
-            </button>
-        </form>
-        <script src="scripts/user_data_handler.js"></script>
+            // Function to check username against your list (replace with your logic)
+            function checkUser(username) {
+                // Replace with your logic to check username (e.g., against a local file)
+                console.log(`Username: ${username}`); // Placeholder for local testing
+                return true; // Assuming approval for local test
+            }
+        </script>
     </body>
 </html>
