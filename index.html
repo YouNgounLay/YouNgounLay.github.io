@@ -2,41 +2,48 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Follow Approval (Local Test)</title>
+        <title>Query Processing</title>
     </head>
     <body>
-        <h1>Welcome to my Static Page</h1>
+        <h1>Query Processing</h1>
         <script>
-            // Assuming the server endpoint is at http://localhost:8000/ (modify if different)
-            const endpoint =
-                "https://effulgent-naiad-bb99e4.netlify.app/endpoint";
-            const replyEndpoint =
-                "https://effulgent-naiad-bb99e4.netlify.app/reply";
+            // Get the URL search parameters
+            const urlParams = new URLSearchParams(window.location.search);
 
-            fetch(endpoint, {
-                // Replace '/endpoint' with your actual endpoint
-                method: "POST",
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    const username = data.username;
-                    const approved = checkUser(username); // Function to check username (replace)
-                    const reply = approved ? "yes" : "no";
-                    return fetch(replyEndpoint, {
-                        // Replace '/reply' with your reply endpoint
-                        method: "POST",
-                        body: JSON.stringify({ response: reply }),
-                    });
-                })
-                .catch((error) => console.error(error));
+            // Extract data from the query string
+            const username = urlParams.get("username");
+            const socialUrl = urlParams.get("socialUrl");
+            const note = urlParams.get("note");
 
-            // Function to check username against your list (replace with your logic)
-            function checkUser(username) {
-                // Replace with your logic to check username (e.g., against a local file)
-                console.log(`Username: ${username}`); // Placeholder for local testing
-                return true; // Assuming approval for local test
+            // Function to send POST request
+            function sendUserData(data) {
+                const xhr = new XMLHttpRequest();
+                xhr.open(
+                    "POST",
+                    "http://localhost:8000/request_handler/follow_user/",
+                );
+                xhr.setRequestHeader(
+                    "Content-Type",
+                    "application/x-www-form-urlencoded",
+                );
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        console.log("User data sent successfully!");
+                    } else {
+                        console.error(
+                            "Error sending user data:",
+                            xhr.statusText,
+                        );
+                    }
+                };
+                xhr.send(data);
             }
+
+            // Prepare data string
+            const data = `username=${username}&socialUrl=${socialUrl}&note=${note}`;
+
+            // Send the username request
+            sendUserData(data);
         </script>
     </body>
 </html>
