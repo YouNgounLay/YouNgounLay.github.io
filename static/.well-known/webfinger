@@ -1,12 +1,14 @@
 {
   "subject": "acct:pbandj9819@mastodon.social",
   "aliases": [
+   "https://mastodon.social/users/pbandj9819",
   ],
   "links": [
     {
       "rel": "http://webfinger.net/rel/profile-page",
       "type": "text/html",
       "href": "https://mastodon.social/@pbandj9819"
+    },
     {
       "rel": "self",
       "type": "application/activity+json",
