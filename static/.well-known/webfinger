@@ -12,6 +12,9 @@
       "type": "application/activity+json",
       "href": "https://mastodon.social/users/pbandj9819"
     },
-
+    {
+      "rel": "http://ostatus.org/schema/1.0/subscribe",
+      "template": "https://mastodon.social/authorize_interaction?uri={uri}"
+    }
   ]
 }
