@@ -1,3 +1,17 @@
-{{ define "main" }} {{ .Content }}
-<h1>This is a single template</h1>
-{{ end }}
+{{ define "main" }}
+<head>
+    <title>youngounlay.github.io</title>
+    <link href="https://youngounlay.github.io/users/{{ .Params.name }}" />
+    <meta property="og:title" content="ylay" />
+    <meta property="og:type" content="website" />
+    <meta
+        property="og:url"
+        content="https://youngounlay.github.io/users/{{ .Params.name }}"
+    />
+    <meta
+        property="og:image"
+        content="https://youngounlay.github.io/a?a={{ .Params.imageUrl }}"
+    />
+    <meta property="og:description" content="what about me?" />
+</head>
+{{ .Content }} {{ end }}

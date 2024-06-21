@@ -4,7 +4,7 @@ import requests
 # url = "https://mastodon.social/@pbandj9819"
 url = "https://youngounlay.github.io/.well-known/webfinger?resource=acct:ylay@youngounlay.github.io"
 url = 'https://mastodon.social/users/pbandj9819'
-
+url = "https://daniellay.cc/u/dlay"
 response = requests.get(url)
 if response.ok:
     try:
