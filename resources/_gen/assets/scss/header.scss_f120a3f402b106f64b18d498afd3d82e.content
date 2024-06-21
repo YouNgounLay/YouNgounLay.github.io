@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato");
+@import url("https://fonts.googleapis.com/css2?family=Roboto");
+@import url("https://fonts.googleapis.com/css2?family=Open+sans");
+.navbar {
+  background-color: black;
+  color: white;
+  padding: 20px; }
+  .navbar h1 {
+    text-transform: uppercase; }
