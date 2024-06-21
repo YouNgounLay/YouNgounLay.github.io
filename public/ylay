@@ -1,0 +1,16 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "id": "https://youngounlay.github.io/users/ylay",
+    "type": "person",
+    "preferredusername": "ylay",
+    "name": "ylay",
+    "inbox": "https://youngounlay.github.io/inbox",
+    "outbox": "https://youngounlay.github.io/utbox",
+    "followers": "https://youngounlay.github.io/followers",
+    "following": "https://youngounlay.github.io/following",
+    "publickey": {
+        "id": "https://youngounlay.github.io/slay#main-key",
+        "owner": "https://youngounlay.github.io/ylay",
+        "publickeypem": process.env.ACTIVITYPUB_PUBLIC_KEY
+    }
+}
