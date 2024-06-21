@@ -2,9 +2,22 @@
 <html lang="en">
     <head>
         <title>{{ .Title }}</title>
+        <link href="https://youngounlay.github.io/users/ylay}}" />
+        <meta property="og:title" content="ylay" />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content="https://youngounlay.github.io/users/ylay"
+        />
+        <meta
+            property="og:image"
+            content="https://youngounlay.github.io/a?a="
+        />
+        <meta property="og:description" content="what about me?" />
         {{ $styles := slice "style" "header" "footer" }} {{ range $style :=
         $styles }} {{ $style := printf "scss/%s.scss" $style }} {{ $style :=
         resources.Get $style | toCSS }}
+
         <link rel="stylesheet" href="{{ $style.RelPermalink}}" />
         {{ end }}
     </head>
