@@ -4,9 +4,14 @@
   ],
   "links": [
     {
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://mastodon.social/@pbandj9819"
+    {
       "rel": "self",
       "type": "application/activity+json",
       "href": "https://mastodon.social/users/pbandj9819"
     },
+
   ]
 }
