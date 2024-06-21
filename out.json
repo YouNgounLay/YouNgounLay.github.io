@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1"
+  ],
+  "chatKeyV0": "GU2kiNfYiAl/Ima6Y0pAtnWMh6wUVAk3qwnBh32ZMDA=",
+  "followers": "https://daniellay.cc/u/dlay/followers",
+  "following": "https://daniellay.cc/u/dlay/following",
+  "icon": {
+    "mediaType": "image/png",
+    "type": "Image",
+    "url": "https://daniellay.cc/a?a=https%3A%2F%2Fdaniellay.cc%2Fu%2Fdlay"
+  },
+  "id": "https://daniellay.cc/u/dlay",
+  "inbox": "https://daniellay.cc/u/dlay/inbox",
+  "name": "dlay",
+  "outbox": "https://daniellay.cc/u/dlay/outbox",
+  "preferredUsername": "dlay",
+  "publicKey": {
+    "id": "https://daniellay.cc/u/dlay#key",
+    "owner": "https://daniellay.cc/u/dlay",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAurv0Q2ws5JkE5Lj2he2a\nlZDZtMZeiPuNj4QFo9nYjlSz44uhFB7jZeHQ8FhaNHyzDSjzZYri/0L13Z9sQigy\nFVivsRMBL1C3pemM+lprDWPikT8jBFQyJtmCY98WV6zY2YbdgQHx9ndNm84cRxNZ\nTnPbW7e8DRvrpfr2XSj1qTVvjNYXrahz2P5QIpAyOOX7nN6sKHV9LKLVsintuWm1\nSZia1+vHKDSqpY5CWgAfKVdLlTxK1ePVL0/nYxoZE8GhMJwYv21SsvZZg2FuZMa5\nN8PyU665Rz3DI5vlL8E3MuwKIGBRntUKutTBeUBj/3BES9zmqQO+3tK/d0pcBa9N\nHQIDAQAB\n-----END PUBLIC KEY-----\n"
+  },
+  "summary": "<p>what about me?",
+  "type": "Person",
+  "url": "https://daniellay.cc/u/dlay"
+}

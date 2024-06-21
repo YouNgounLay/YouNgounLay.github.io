@@ -2,5 +2,12 @@ baseURL = 'https://youngounlay.github.io/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 
-[redirects]
-'@ylay' = '/users/ylay'
+[outputs]
+home = ["HTML", "JSON"]
+page = ["HTML"]
+
+[outputFormats]
+[outputFormats.JSON]
+mediaType = "application/json"
+baseName = "users/ylay"
+isPlainText = true
