@@ -1,18 +1,19 @@
 {
   "subject": "acct:ylay@youngounlay.github.io",
   "aliases": [
+    "https://youngounlay.github.io/@ylay"
     "https://youngounlay.github.io/users/ylay"
   ],
   "links": [
     {
       "rel": "http://webfinger.net/rel/profile-page",
       "type": "text/html",
-      "href": "https://youngounlay.github.io/"
+      "href": "https://youngounlay.github.io/@ylay"
     },
     {
       "rel": "self",
       "type": "application/activity+json",
-      "href": "https://youngounlay.github.io/"
+      "href": "https://youngounlay.github.io/users/ylay"
     },
     {
       "rel": "http://ostatus.org/schema/1.0/subscribe",
