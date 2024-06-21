@@ -15,12 +15,5 @@
       <guid>http://localhost:1313/@ylay/</guid>
       <description>Ylay&amp;rsquo;s Profile Welcome to my page You can follow me on ActivityPub</description>
     </item>
-    <item>
-      <title>Ylay</title>
-      <link>http://localhost:1313/users/ylay/</link>
-      <pubDate>Fri, 21 Jun 2024 13:58:51 +1000</pubDate>
-      <guid>http://localhost:1313/users/ylay/</guid>
-      <description>Ylay&amp;rsquo;s Profile Welcome to my page You can follow me on ActivityPub</description>
-    </item>
   </channel>
 </rss>

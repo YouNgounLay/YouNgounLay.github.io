@@ -1,18 +1,16 @@
 import requests
 
-# url = "https://mastodon.social/users/pbandj9819"
-# url = "https://mastodon.social/@pbandj9819"
-url = "https://youngounlay.github.io/.well-known/webfinger?resource=acct:ylay@youngounlay.github.io"
-url = 'https://mastodon.social/users/pbandj9819'
-url = "https://daniellay.cc/u/dlay"
-response = requests.get(url)
-if response.ok:
-    try:
-        res = response.json()
-        print(type(res))
-    except Exception:
-        print("There is no json body")
-        print("\n" * 10)
-        print(response.content.decode('utf-8'))
+url = "https://mastodon.social/users/pbandj9819"
+url = 'https://youngounlay.github.io/users/ylay'
+url = 'http://localhost:1313/users/ylay'
+url = 'http://localhost:1313/.well-known/webfinger?resource='
+headers = {"Accept": "application/activity+json"}
+headers = {}
+response = requests.get(url, headers=headers)
+
+if response.status_code == 200:
+    print(response.json())
+    # json_content = response.json()
+    # print(json_content)
 else:
-   print(response.status_code)
+    print("Failed to retrieve the JSON content.")
