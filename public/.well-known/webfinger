@@ -1,13 +1,23 @@
 {
+  "subject": "acct:pbandj9819@mastodon.social",
   "aliases": [
-    "https://youngounlay.github.io/@ylay"
+    "https://mastodon.social/@pbandj9819",
+    "https://mastodon.social/users/pbandj9819"
   ],
   "links": [
     {
-      "href" "https://youngounlay.github.io/users/ylay"
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://mastodon.social/@pbandj9819"
+    },
+    {
       "rel": "self",
-      "type": "application/activity+json"
+      "type": "application/activity+json",
+      "href": "https://mastodon.social/users/pbandj9819"
+    },
+    {
+      "rel": "http://ostatus.org/schema/1.0/subscribe",
+      "template": "https://mastodon.social/authorize_interaction?uri={uri}"
     }
-  ],
-  "subject": "acct:ylay@youngounlay.github.io"
+  ]
 }

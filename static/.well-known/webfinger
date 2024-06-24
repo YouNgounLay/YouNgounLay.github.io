@@ -4,7 +4,7 @@
   ],
   "links": [
     {
-      "href" "https://youngounlay.github.io/users/ylay.json"
+      "href" "https://youngounlay.github.io/user-info/ylay/actor"
       "rel": "self",
       "type": "application/activity+json"
     }
