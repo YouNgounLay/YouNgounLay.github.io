@@ -1,0 +1,11 @@
+{
+	"subject": "acct:noah@ylay.netlify.app", 
+	"aliases": [],
+	"links": [
+		{
+			"rel": "self", 
+			"type": "application/activity+json", 
+			"href": "https://ylay.netlify.app/noah/actor.json"
+		}
+	]
+}

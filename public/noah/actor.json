@@ -1,0 +1,15 @@
+{
+	"@context": "https://www.w3.org/ns/activitystreams", 
+	"type": "Person", 
+	"preferredUsername": "noah",
+	"id": "https://ylay.netlify.app/noah/actor.json", 
+	"inbox": "https://ylay.netlify.app/noah/inbox.json", 
+	"outbox": "https://ylay.netlify.app/noah/outbox.json", 
+	"followers": "https://ylay.netlify.app/noah/followers.json", 
+	"following": "https://ylay.netlify.app/noah/following.json", 
+	"publicKey": {
+		"id": "https://ylay.netlify.app/noah/actor.json#main-key",
+		"owner": "https://ylay.netlify.app/noah/actor.json", 
+		"publicKeyPem": "-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEAp3XLiZyeJ4T4ZeykXT/HkDC4kKcA8B0wf27HEa4pEUH7GGICkvSN\nfXvM7lxLYvysfswg4beG7qIR3ZZfhal+QY+fozxC2M6K8ujsGFa38H+rOK24t+Js\nQZ9zvJdRNbQ00sxRu0LRDrht5gdMwTbp0WvNeQFqJRGGBY5lwOh4DFXEAMhzlU7H\nJ1xINCVrDUTRhUsTrStKLe8PlQ5xfMdPJ33fL1G1t9VJALc+ckgZCXyqpGu3yc+b\nnBzq+WPBSVmtQ+GOohx6FsF1vgxafoxoFrCBaH7nyKsxPsgWj7fPpi5r27K6fk8D\nFZ31poUMO6dKfXinmP5WKCO9xJDdZK504QIDAQAB\n-----END RSA PUBLIC KEY-----\n"
+	}
+}
