@@ -1,13 +1,11 @@
 {
-  "aliases": [
-    "https://youngounlay.github.io/@ylay"
-  ],
-  "links": [
-    {
-      "href" "https://youngounlay.github.io/user-info/ylay/actor.json"
-      "rel": "self",
-      "type": "application/activity+json"
-    }
-  ],
-  "subject": "acct:ylay@youngounlay.github.io"
+	"subject": "acct:noah@ylay.netlify.app", 
+	"aliases": [],
+	"links": [
+		{
+			"rel": "self", 
+			"type": "application/activity+json", 
+			"href": "https://ylay.netlify.app/noah/actor.json"
+		}
+	]
 }

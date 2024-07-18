@@ -1,13 +1,3 @@
-baseURL = 'https://youngounlay.github.io/'
+baseURL = 'https://ylay.netlify.app/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
-
-[outputs]
-home = ["HTML", "JSON"]
-page = ["HTML"]
-
-[outputFormats]
-[outputFormats.JSON]
-mediaType = "application/json"
-baseName = "users/ylay"
-isPlainText = true
