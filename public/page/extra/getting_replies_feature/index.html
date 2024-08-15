@@ -1,0 +1,174 @@
+<!doctype html> 
+<html> 
+	<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+			
+		
+			
+			
+			<link rel="stylesheet" href="/scss/style.css">
+		
+			
+			
+			<link rel="stylesheet" href="/scss/list.css">
+		
+			
+			
+			<link rel="stylesheet" href="/scss/single.css">
+		
+			
+			
+			<link rel="stylesheet" href="/scss/shortcodes.css">
+		
+	</head>
+	<body> 
+		<header>
+	<nav class="navbar">
+		<h1>Getting Replies Feature</h1>
+	</nav>
+</header>
+		
+	<div class="page-body">
+		<section class="title-heading">Getting Replies Feature</section>
+		<section>Published: 2024-08-09 16:46:50 &#43;1000 AEST</section>
+		<hr>
+		<p>Given there exists a mutual relationship between your static site actor, and other ActivityPub platform user. Many ActivityPub platforms send out a <code>HTTP POST</code> request to your actor inbox, whenever the other actor publish new content that is relevant to you. Because our site is static by nature, we will not be able to actively listen for the requests and take appropriate action. Despite this, there are alternative measures we can take to solve this problems. For our case, we use the <code>outbox</code> of our list of followers and following, in <code>followers.json</code> &amp; <code>following.json</code> respectively, make a <code>HTTP GET</code> request to retrieve a list of post and filter them out accordingly.</p>
+<p>Here is an example code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> utility <span style="color:#f92672">import</span> get_follower_url, extract_followers_outbox, ActivityDTO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostReplyHandler</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, actor_id, webfinger):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>actor_id <span style="color:#f92672">=</span> actor_id
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>domain, self<span style="color:#f92672">.</span>username <span style="color:#f92672">=</span> webfinger<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;@&#34;</span>)[<span style="color:#ae81ff">1</span>:]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_replies</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Getting a list of followers</span>
+</span></span><span style="display:flex;"><span>        activity_dto <span style="color:#f92672">=</span> ActivityDTO()
+</span></span><span style="display:flex;"><span>        follower_url <span style="color:#f92672">=</span> get_follower_url(self<span style="color:#f92672">.</span>actor_id)
+</span></span><span style="display:flex;"><span>        extract_followers_outbox(follower_url, activity_dto)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        filtered_posts <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> follower <span style="color:#f92672">in</span> activity_dto<span style="color:#f92672">.</span>followers:
+</span></span><span style="display:flex;"><span>            outbox_url  <span style="color:#f92672">=</span> follower[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>            posts <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>__get_posts(outbox_url)
+</span></span><span style="display:flex;"><span>            filtered_posts<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>__filtered_post(posts))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> filtered_posts
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__get_posts</span>(self, outbox_url):
+</span></span><span style="display:flex;"><span>        headers <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;accept&#34;</span>: <span style="color:#e6db74">&#34;application/activity+json&#34;</span> } 
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(outbox_url, headers<span style="color:#f92672">=</span>headers)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> response<span style="color:#f92672">.</span>ok: 
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> []
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;orderedItems&#39;</span> <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>__get_post_from_ordered_items(data)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#34;first&#34;</span> <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>            first <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;first&#39;</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> isinstance(first, dict):
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>__get_post_from_ordered_items(first)
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>__get_post_from_ext_urls(data)
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__get_post_from_ordered_items</span>(self, data): 
+</span></span><span style="display:flex;"><span>            items <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;orderedItems&#39;</span>]
+</span></span><span style="display:flex;"><span>            posts <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>            urls <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> items: 
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> type(item) <span style="color:#f92672">==</span> str:
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># This couldbe urls leading to more problems</span>
+</span></span><span style="display:flex;"><span>                    urls<span style="color:#f92672">.</span>append(item)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span> type(item) <span style="color:#f92672">==</span> dict: 
+</span></span><span style="display:flex;"><span>                    posts<span style="color:#f92672">.</span>append(json<span style="color:#f92672">.</span>loads(item))
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls:
+</span></span><span style="display:flex;"><span>                headers <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;accept&#34;</span>: <span style="color:#e6db74">&#34;application/activity+json&#34;</span>}
+</span></span><span style="display:flex;"><span>                response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers<span style="color:#f92672">=</span>headers)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> response<span style="color:#f92672">.</span>ok:
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>                posts<span style="color:#f92672">.</span>append(json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text))
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;next&#34;</span> <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>                posts <span style="color:#f92672">+=</span> self<span style="color:#f92672">.</span>__get_post_from_ext_urls(data)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> posts
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__get_post_from_ext_urls</span>(self, data):
+</span></span><span style="display:flex;"><span>        excluded_keys <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;@context&#34;</span>, <span style="color:#e6db74">&#34;id&#34;</span>, <span style="color:#e6db74">&#34;type&#34;</span>, <span style="color:#e6db74">&#34;totalItems&#34;</span>, <span style="color:#e6db74">&#34;orderedItems&#34;</span>] 
+</span></span><span style="display:flex;"><span>        urls <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Getting relevant urls</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> key <span style="color:#f92672">in</span> data:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> key <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> excluded_keys:
+</span></span><span style="display:flex;"><span>                urls<span style="color:#f92672">.</span>append(data[key])
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        posts <span style="color:#f92672">=</span> [] 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> len(urls) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            url <span style="color:#f92672">=</span> urls<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> isinstance(url, dict):
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> url[<span style="color:#e6db74">&#39;orderedItems&#39;</span>]:
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> isinstance(data, str):
+</span></span><span style="display:flex;"><span>                        urls<span style="color:#f92672">.</span>insert(<span style="color:#ae81ff">0</span>, data)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                        posts<span style="color:#f92672">.</span>append(data)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>            response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, headers<span style="color:#f92672">=</span>{ <span style="color:#e6db74">&#34;accept&#34;</span>: <span style="color:#e6db74">&#34;application/activity+json&#34;</span>})
+</span></span><span style="display:flex;"><span>            json_data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(response<span style="color:#f92672">.</span>text)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;orderedItems&#34;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> json_data<span style="color:#f92672">.</span>keys(): 
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span> 
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> json_data[<span style="color:#e6db74">&#39;orderedItems&#39;</span>]:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> type(item) <span style="color:#f92672">==</span> str:
+</span></span><span style="display:flex;"><span>                    urls<span style="color:#f92672">.</span>append(item)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span> type(item) <span style="color:#f92672">==</span> dict: 
+</span></span><span style="display:flex;"><span>                    posts<span style="color:#f92672">.</span>append(item)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Registered the next urls</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;next&#34;</span> <span style="color:#f92672">in</span> json_data<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>                urls<span style="color:#f92672">.</span>append(json_data[<span style="color:#e6db74">&#34;next&#34;</span>])
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#34;last&#34;</span> <span style="color:#f92672">in</span> json_data<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>                urls<span style="color:#f92672">.</span>append(json_data[<span style="color:#e6db74">&#34;last&#34;</span>])
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>: 
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> posts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__filtered_post</span>(self, posts): 
+</span></span><span style="display:flex;"><span>        filtered_posts <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> post <span style="color:#f92672">in</span> posts:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;object&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> post<span style="color:#f92672">.</span>keys(): 
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> post[<span style="color:#e6db74">&#39;type&#39;</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;Create&#34;</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            post_obj <span style="color:#f92672">=</span> post[<span style="color:#e6db74">&#39;object&#39;</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;inReplyTo&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> post_obj<span style="color:#f92672">.</span>keys(): 
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> post_obj[<span style="color:#e6db74">&#39;inReplyTo&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">None</span>: 
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>            in_reply_to <span style="color:#f92672">=</span> post_obj[<span style="color:#e6db74">&#39;inReplyTo&#39;</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>domain <span style="color:#f92672">in</span> in_reply_to <span style="color:#f92672">and</span> self<span style="color:#f92672">.</span>username <span style="color:#f92672">in</span> in_reply_to:
+</span></span><span style="display:flex;"><span>                filtered_posts<span style="color:#f92672">.</span>append(post)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> filtered_posts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    actor_id <span style="color:#f92672">=</span>  <span style="color:#e6db74">&#34;https://noah.netlify.app/noah/actor.json&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    webfinger <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;@noah@netlify.app&#34;</span>
+</span></span><span style="display:flex;"><span>    handler <span style="color:#f92672">=</span> PostReplyHandler(actor_id, webfinger)
+</span></span><span style="display:flex;"><span>    print(handler<span style="color:#f92672">.</span>get_replies())
+</span></span></code></pre></div><hr>
+<p><strong>See also</strong></p>
+<ul>
+<li><a href="/page/running_activitypub_server_leveraging_static_web_hosting/">Running ActivityPub Server on Static Site</a></li>
+<li><a href="/page/extra/activitypub_codebase">Codebase</a></li>
+</ul>
+
+	</div>
+
+	</body>
+</html>

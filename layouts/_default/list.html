@@ -1,3 +1,29 @@
-{{ define "main" }} {{ .Content }}
-<h1>This is a list template</h1>
+{{ define "main" }}
+	{{ .Content }}
+	{{ $excluded_pages := slice "Categories" "Tags" .Title "Pages" "Extras"}}
+	{{ range $page := .Site.RegularPages }}
+		{{ $excluded := false }}
+		{{ range $ep := $excluded_pages }}
+			{{ if in $page.Title $ep }}
+				{{ $excluded = true }}
+			{{ else if in $page.Path "/extra/"}}
+				{{ $excluded = true }}
+			{{ end }}
+		{{ end }}
+		{{ if not $excluded }}
+			<div class="card-container">
+				<fieldset>
+					<legend class="card-heading">{{ $page.Title }}</legend>
+						{{ if $page.Summary }}
+							<p>{{ $page.Summary }}</p>
+						{{ else }}
+							Empty WIP
+						{{ end }}
+					<a class="page-btn" href="{{ $page.RelPermalink }}">See More</a>
+				</fieldset>
+			</div>
+		{{ else }}
+		{{ end }}
+
+	{{ end }}
 {{ end }}
