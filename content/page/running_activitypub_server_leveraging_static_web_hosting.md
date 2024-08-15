@@ -22,14 +22,14 @@ For this project, we have prioritized the implementation of the following functi
 - [Replying to a post](/page/extra/posting_reply_feature)
 
 ### Priority 2 Features:
-- [Liking a post]()
-- [Seeing who liked your post]()
-- [Boosting/Announcing a person's post]()
-- [Seeing who boosted/announced your post]()
+- Liking a post - WIP
+- Seeing who liked your post - WIP
+- Boosting/Announcing a person's post - WIP
+- Seeing who boosted/announced your post - WIP
 - [Following someone](/page/extra/following_feature)
 
 ### Priority 3 Features:
-- [Bookmarking a post]()
+- Bookmarking a post - WIP
 
 ## Understanding WebFinger
 
