@@ -14,11 +14,6 @@ pip install requests
 {{< callout type="note" title="Note" >}}
 Different ActivityPub platforms require varying levels of security for signatures. The algorithm discussed in this section has been tested with Mastodon, Honk, and Ktistec. While it works successfully with Mastodon and Honk, Ktistec demands additional security measures that have not yet been fully addressed due to resource constraints.
 {{< /callout >}}
-+++
-title = 'ActivityPub Codebase'
-date = 2024-08-09T16:09:39+10:00
-draft = false
-+++
 
 We will be implementing a couple of handler objects for generating activity and sending out request to execute [ActivityPub Activity](https://www.w3.org/ns/activitystreams). The codebase will be implemented using Python, it is recommended that you install the following python libraries on your machine or python environment:
 
@@ -201,7 +196,7 @@ class ActivityHandler:
         return response
 ```
 
-### ActivityGenerator {{#activity_generator}}
+### ActivityGenerator {#activity_generator}
 
 ```python
 from datetime import datetime, timezone 
@@ -346,7 +341,7 @@ class DeleteActivityTemplate(ActivityTemplate):
         return activity
 ```
 
-### ActivityRequest {{#activity_request}}
+### ActivityRequest {#activity_request}
 ```python
 import requests
 import base64
@@ -431,7 +426,7 @@ class ActivityPubRequestHandler:
         return requests.post(url, headers=headers, data=activity)
 ```
 
-### ActorInfoRetriever {{#actor_info_retriever}}
+### ActorInfoRetriever {#actor_info_retriever}
 ```python
 import requests 
 import json
@@ -498,7 +493,7 @@ class ActorInboxInfoRetriever(ActorInfoRetriever):
         return [ inbox, "/" + "/".join(inbox_endpoint)]
 ```
 
-### Utility {{#utility}}
+### Utility {#utility}
 
 ```python
 import requests
