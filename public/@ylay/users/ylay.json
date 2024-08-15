@@ -1,7 +1,0 @@
-{
-  "title": "@Ylay",
-  "content": {
-    { .Content | jsonify
-    }
-  }
-}
