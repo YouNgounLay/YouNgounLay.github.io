@@ -34,7 +34,7 @@
       <link>http://localhost:1313/page/extra/getting_follow_feature/</link>
       <pubDate>Fri, 09 Aug 2024 15:35:53 +1000</pubDate>
       <guid>http://localhost:1313/page/extra/getting_follow_feature/</guid>
-      <description>Since our server is entirely static, it is not possible for us to receive follow requests from an ActivityPub platform without some form of server-side processing.&#xA;What sort of information do I need to send out here?&#xA;How it&amp;rsquo;s not important for us to send back an &amp;lsquo;Accept&amp;rsquo; request, if a user has sent us a followed requests. We can still share contents back to the followed users Alternatively, we can run a backend server once in a while to check for any follow requests.</description>
+      <description>Since our server is entirely static, we are unable to directly process follow requests from ActivityPub platforms without some form of server-side processing. However, once a user sends a follow request to our static user, any content we publish can be shared with their Inbox.&#xA;There are three possible solutions to this problem:&#xA;Setting manuallyApprovesFollowers to false in Actor object - Might not work with some platforms Adding requested follower to followers.</description>
     </item>
     <item>
       <title>Publish Post Feature</title>

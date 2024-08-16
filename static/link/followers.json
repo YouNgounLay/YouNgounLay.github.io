@@ -2,6 +2,6 @@
 	"@context": "https://www.w3.org/ns/activitystreams",
 	"id": "https://daniellay.cc/link/followers.json",
 	"type": "OrderedCollection", 
-	"totalItems": 0,
+	"totalItems": 1,
 	"first": "https://daniellay.cc/link/followers/first.json"
 }

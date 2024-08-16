@@ -4,5 +4,7 @@
 	"type":"OrderedCollectionPage",
 	"totalItems": 0,
 	"partOf": "https://daniellay.cc/link/followers.json",
-	"orderedItems": []
+	"orderedItems": [
+		"https://mastodon.social/users/pbandj9819"
+	]
 }
