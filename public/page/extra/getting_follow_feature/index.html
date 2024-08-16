@@ -29,9 +29,17 @@
 		
 	<div class="page-body">
 		<section class="title-heading">Getting follow feature</section>
-		<section>Published: 2024-08-09 15:35:53 &#43;1000 AEST</section>
+		<section><strong>Published: </strong>2024-08-09 15:35:53 &#43;1000 AEST</section>
 		<hr>
-		<hr>
+		<p>Since our server is entirely static, it is not possible for us to receive follow requests from an ActivityPub platform without some form of server-side processing.</p>
+<p>What sort of information do I need to send out here?</p>
+<ol>
+<li>How it&rsquo;s not important for us to send back an &lsquo;Accept&rsquo; request, if a user has sent us a followed requests. We can still share contents back to the followed users</li>
+<li>Alternatively, we can run a backend server once in a while to check for any
+follow requests. Then make appropriate actions and update our static site accordingly.
+2.1. Additionally, we can include some form of contact information on our</li>
+</ol>
+<hr>
 <p><strong>See also</strong></p>
 <ul>
 <li><a href="/page/running_activitypub_server_leveraging_static_web_hosting/">Running ActivityPub Server on Static Site</a></li>
