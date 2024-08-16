@@ -3,38 +3,6 @@
 	"id": "https://daniellay.cc/link/outbox.json",
 	"type": "OrderedCollection",
 	"totalItems": 1,
-	"orderedItems": [
-		{
-			"@context": "https://www.w3.org/ns/activitystreams",
-			"id": "https://daniellay.cc/page/running_activitypub_server_leveraging_static_web_hosting/-create",
-			"type": "Create",
-			"actor": "https://daniellay.cc/link/actor.json",
-			"published": "2024-07-11T04:57:02Z",
-			"object": {
-				"id": "https://daniellay.cc/page/running_activitypub_server_leveraging_static_web_hosting/",
-				"type": "Note",
-				"attributedTo": "https://daniellay.cc/link/actor.json",
-				"content": "Setting up a minimal ActivityPub-compatible static site involves integrating an ActivityPub server into the static site. The process includes creating a WebFinger file and an actor object, enabling user discovery by other platforms, along with a curated list of features to be implemented.",
-				"contentMap": {
-					"en": "Setting up a minimal ActivityPub-compatible static site involves integrating an ActivityPub server into the static site. The process includes creating a WebFinger file and an actor object, enabling user discovery by other platforms, along with a curated list of features to be implemented."
-				},
-				"inReplyTo": null,
-				"sensitive": false,
-				"atomUri": "https://daniellay.cc/page/running_activitypub_server_leveraging_static_web_hosting/"
-			},
-			"to": [ "https://www.w3.org/ns/activitystreams#Public"],
-			"cc": [ "https://daniellay.cc/link/followers.json"],
-			"tag": [],
-			"replies": {
-				"id": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
-				"type": "Collection",
-				"first": {
-					"id": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
-					"type": "CollectionPage",
-					"partOf": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
-					"items": []
-				}
-			}
-		}
-	]
+	"first": "https://daniellay.cc/link/outbox/first.json",
+	"last": "https://daniellay.cc/link/outbox/last.json"
 }
