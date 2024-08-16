@@ -2,7 +2,9 @@
 	"@context": "https://www.w3.org/ns/activitystreams",
 	"id": "https://daniellay.cc/link/followers/first.json",
 	"type":"OrderedCollectionPage",
-	"totalItems": 0,
+	"totalItems": 1,
 	"partOf": "https://daniellay.cc/link/followers.json",
-	"orderedItems": []
+	"orderedItems": [
+		"https://mastodon.social/users/daniel_lay"
+	]
 }
