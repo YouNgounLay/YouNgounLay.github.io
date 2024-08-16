@@ -1,0 +1,84 @@
+{ 
+	"@context": [
+		"https://www.w3.org/ns/activitystreams",
+		"https://w3id.org/security/v1", {
+			"manuallyApprovesFollowers": "as:manuallyApprovesFollowers",
+			"toot":"http://joinmastodon.org/ns#",
+			"featured": {
+				"@id":"toot:featured",
+				"@type":"@id"
+			},
+			"featuredTags": { 
+				"@id":"toot:featuredTags",
+				"@type":"@id"
+			},
+			"alsoKnownAs":{ 
+				"@id":"as:alsoKnownAs",
+				"@type":"@id"
+			},
+			"movedTo": {
+				"@id":"as:movedTo",
+				"@type":"@id"
+			},
+			"schema":"http://schema.org#",
+			"PropertyValue":"schema:PropertyValue",
+			"value":"schema:value",
+			"discoverable":"toot:discoverable",
+			"Device":"toot:Device",
+			"Ed25519Signature":"toot:Ed25519Signature",
+			"Ed25519Key":"toot:Ed25519Key",
+			"Curve25519Key":"toot:Curve25519Key",
+			"EncryptedMessage":"toot:EncryptedMessage",
+			"publicKeyBase64":"toot:publicKeyBase64",
+			"deviceId":"toot:deviceId",
+			"claim":{ 
+				"@type":"@id",
+				"@id":"toot:claim"
+			},
+			"fingerprintKey": {
+				"@type":"@id",
+				"@id":"toot:fingerprintKey"
+			},
+			"identityKey": { 
+				"@type":"@id",
+				"@id":"toot:identityKey"
+			},
+			"devices": { 
+				"@type":"@id",
+				"@id":"toot:devices"
+			},
+			"messageFranking":"toot:messageFranking",
+			"messageType":"toot:messageType",
+			"cipherText":"toot:cipherText",
+			"suspended":"toot:suspended",
+			"memorial":"toot:memorial",
+			"indexable":"toot:indexable"
+		}
+	],
+	"id":"https://mastodon.social/users/pbandj9819",
+	"type":"Person",
+	"following":"https://mastodon.social/users/pbandj9819/following",
+	"followers":"https://mastodon.social/users/pbandj9819/followers",
+	"inbox":"https://mastodon.social/users/pbandj9819/inbox",
+	"outbox":"https://mastodon.social/users/pbandj9819/outbox",
+	"featured":"https://mastodon.social/users/pbandj9819/collections/featured",
+	"featuredTags":"https://mastodon.social/users/pbandj9819/collections/tags",
+	"preferredUsername":"pbandj9819",
+	"name":"pbandj9819",
+	"summary":"",
+	"url":"https://mastodon.social/@pbandj9819",
+	"manuallyApprovesFollowers":false,
+	"discoverable":false,
+	"indexable":false,
+	"published":"2024-04-25T00:00:00Z",
+	"memorial":false,
+	"devices":"https://mastodon.social/users/pbandj9819/collections/devices",
+	"publicKey":{ 
+		"id":"https://mastodon.social/users/pbandj9819#main-key",
+		"owner":"https://mastodon.social/users/pbandj9819",
+	"publicKeyPem":"-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyoehyqo81il7AxYz4kDb\ndcQd8t8hU0/yclwD1MJAC6+sAMu7ABHjjAJG8Avm42TPPKczA+yf7zSKuO6Vb54n\nohP4vWX4JG+8PNLgR9fk/+Iu3Xf+G5r2NkNZmoC0YmIQaJcb2/UyaatLJE6PVAji\ntgzrwAmGR1wV0sDfmuiySZF6foEI092QnzSM/UnLmEvjGIYaYgFGksCqORprdMCP\nwmgCX5wZETPDbTXhVQDFt6HKk62XY2aS1pPJLVTfLm4egepVP3vodEisliliPV7L\nbvPE2/pQvXgJMyAropj1VaD+sBt8jSNQcDZ/L+Up6v/CyL8mJUJ3pLGrCy2zPC2O\nJQIDAQAB\n-----END PUBLIC KEY-----\n"
+	},
+	"tag":[],
+	"attachment":[],
+	"endpoints":{"sharedInbox":"https://mastodon.social/inbox"}
+}
