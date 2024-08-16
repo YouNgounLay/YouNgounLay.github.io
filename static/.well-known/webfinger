@@ -1,23 +1,11 @@
 {
-  "subject": "acct:pbandj9819@mastodon.social",
-  "aliases": [
-    "https://mastodon.social/@pbandj9819",
-    "https://mastodon.social/users/pbandj9819"
-  ],
-  "links": [
-    {
-      "rel": "http://webfinger.net/rel/profile-page",
-      "type": "text/html",
-      "href": "https://mastodon.social/@pbandj9819"
-    },
-    {
-      "rel": "self",
-      "type": "application/activity+json",
-      "href": "https://mastodon.social/users/pbandj9819"
-    },
-    {
-      "rel": "http://ostatus.org/schema/1.0/subscribe",
-      "template": "https://mastodon.social/authorize_interaction?uri={uri}"
-    }
-  ]
+	"subject": "acct:noah@youngounlay.github.io", 
+	"aliases": [],
+	"links": [
+		{
+			"rel": "self", 
+			"type": "application/json", 
+			"href": "https://youngounlay.github.io/noah/actor.json"
+		}
+	]
 }
