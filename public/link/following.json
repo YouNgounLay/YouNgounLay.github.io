@@ -3,5 +3,5 @@
 	"id": "https://daniellay.cc/link/following.json",
 	"type": "OrderedCollection", 
 	"totalItems": 0,
-	"orderedItems": []
+	"first": "https://daniellay.cc/link/following/first.json"
 }

@@ -1,0 +1,8 @@
+{ 
+	"@context": "https://www.w3.org/ns/activitystreams",
+	"id": "https://daniellay.cc/link/follwing/first.json",
+	"type":"OrderedCollectionPage",
+	"totalItems": 0,
+	"partOf": "https://daniellay.cc/link/following.json",
+	"orderedItems": []
+}
