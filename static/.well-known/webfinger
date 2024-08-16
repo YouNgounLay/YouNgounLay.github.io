@@ -1,11 +1,11 @@
 {
-	"subject": "acct:link@daniellay.cc", 
+	"subject": "acct:noah@youngounlay.github.io", 
 	"aliases": [],
 	"links": [
 		{
 			"rel": "self", 
 			"type": "application/activity+json", 
-			"href": "https://daniellay.cc/link/actor.json"
+			"href": "https://youngounlay.github.io/noah/actor.json"
 		}
 	]
 }
