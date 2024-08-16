@@ -1,7 +1,7 @@
 import requests
 import json
 
-url = 'https://daniellay.cc/.well-known/webfinger'
+url = 'https://gopinath.org/actors/rahul/outbox'
 
-response = requests.get(url)
-headers = response.headers
+response = requests.get(url, headers={ "accept": "application/activity+json"})
+print(response.text)

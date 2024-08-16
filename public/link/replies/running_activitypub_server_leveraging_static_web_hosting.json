@@ -1,0 +1,11 @@
+{
+	"@context": "https://www.w3.org/ns/activitystreams",
+	"id": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
+	"type": "Collection",
+	"first": {
+		"id": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
+		"type": "CollectionPage",
+		"partOf": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
+		"items": []
+	}
+}

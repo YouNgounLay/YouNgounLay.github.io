@@ -24,7 +24,16 @@
 			"to": [ "https://www.w3.org/ns/activitystreams#Public"],
 			"cc": [ "https://daniellay.cc/link/followers.json"],
 			"tag": [],
-			"replies": null
+			"replies": {
+				"id": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
+				"type": "Collection",
+				"first": {
+					"id": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
+					"type": "CollectionPage",
+					"partOf": "https://daniellay.cc/link/replies/running_activitypub_server_leveraging_static_web_hosting.json",
+					"items": []
+				}
+			}
 		}
 	]
 }
